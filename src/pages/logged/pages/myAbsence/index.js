@@ -21,7 +21,7 @@ class myAbsence extends Component {
     header: null,
   };
 
-  componentWillMount(){
+  componentDidMount(){
     AsyncStorage.getItem('@MyApp:myAnsence').then(data => {
       this.setState({scrollData: JSON.parse(data)});
     });

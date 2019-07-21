@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {NavigationActions} from 'react-navigation';
+import {NavigationActions,StackActions} from 'react-navigation';
 import {AsyncStorage} from 'react-native';
 
 import styles from './styles';
@@ -47,7 +47,15 @@ class SideMenu extends Component {
             <View style={styles.navSectionStyle}>
 
               <TouchableOpacity style={styles.navRowStyle}
-                onPress={this.navigateToScreen('vPresence')}
+                onPress={()=>{
+                  const resetAction = StackActions.reset({
+                    index: 0,
+                    actions: [
+                      NavigationActions.navigate({ routeName: 'ToHome' }),
+                    ],
+                  });
+                  this.props.navigation.dispatch(resetAction);
+                }}
               >
                 <MCIcon style={styles.navIconStyle} name="qrcode-scan" size={30} color="white" />
                 <Text style={styles.navItemStyle}>

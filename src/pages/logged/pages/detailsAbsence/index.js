@@ -23,7 +23,7 @@ class detailsAbsence extends Component{
     error: false
   };
   
-  componentWillMount(){
+  componentDidMount(){
     this._getDates();
   }
 

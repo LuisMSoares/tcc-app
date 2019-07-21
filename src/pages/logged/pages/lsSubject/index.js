@@ -22,7 +22,7 @@ class lsSubject extends Component {
     header: null,
   };
 
-  componentWillMount(){
+  componentDidMount(){
     this.reloadElement();
     AsyncStorage.getItem('@MyApp:Subject').then(data => {
       this.setState({scrollData: JSON.parse(data)});

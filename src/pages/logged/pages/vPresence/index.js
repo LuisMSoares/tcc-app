@@ -19,6 +19,11 @@ class vPresence extends Component {
     header: null,
   };
   
+  state = {
+    sincStatus: 'Aguardando Leitura',
+    sincNow: false,
+  };
+
   _decryptData(data) {
     let CryptoJS = require("crypto-js");
     let bytes  = CryptoJS.AES.decrypt(data, '%8#7@e20&4');
@@ -27,7 +32,7 @@ class vPresence extends Component {
     return originalText;
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this._sincPendentData();
   }
 
@@ -108,11 +113,6 @@ class vPresence extends Component {
     }
   };
 
-  state = {
-    sincStatus: 'Sistema pronto e sincronizado.',
-    sincNow: false,
-  };
-
   setSincNotification(status) {
     this.setState({sincStatus: status});
   }
@@ -150,62 +150,65 @@ class vPresence extends Component {
       <View style={{ flex: 1 }}>
         {customHeader(this.props.navigation.toggleDrawer,"Validar Presença")}
         <QRCodeScanner
+          cameraStyle={styles.QrView}
           cameraProps={{captureAudio: false}}
           vibrate={false}
           reactivate={true}
           reactivateTimeout={3000}
           onRead={this.onSuccess.bind(this)}
-          topViewStyle={styles.zeroContainer}
-          bottomContent={
-            <View>
-              <Text style={styles.notification}>{this.state.sincStatus}</Text>
-              {this.state.sincNow === true && 
-                <TouchableOpacity
-                  style={styles.Button}
-                  onPress={this._sincPendentData}
-                >
-                  <Text style={styles.ButtonText}>Sincroizar Agora</Text>
-                </TouchableOpacity>
-              }
-            </View>
-          }
           showMarker={true}
           customMarker={
             <Image
-              style={{height: this._qrMarkerSize(), width: this._qrMarkerSize()}}
+              style={{height: this._qrMarkerSize(),
+                      width: this._qrMarkerSize(),
+                      marginBottom: Dimensions.get('window').height / 6,
+                    }}
               source={require('../../../../images/qrMarker.png')}
             />
           }
         />
+        <View style={styles.BottomContainer}>
+          <Text style={styles.notification}>{this.state.sincStatus}</Text>
+          {this.state.sincNow === true && 
+            <TouchableOpacity
+              style={styles.Button}
+              onPress={this._sincPendentData}
+            >
+              <Text style={styles.ButtonText}>Sincroizar Agora</Text>
+            </TouchableOpacity>
+          }
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  zeroContainer: {
-    height: 0,
-    flex: 0,
+  QrView: {
+    height: Dimensions.get('window').height,
+  },
+  BottomContainer: {
+    marginBottom: 20,
   },
   notification: {
-    paddingTop: 3,
+    flex: 0,
     paddingRight: 10,
     paddingLeft: 10,
     textAlign: 'center', 
     fontSize: 22,
-    color: '#FC6663',
+    color: 'white',
   },
   Button: {
     padding: 10,
     borderRadius: 5,
     borderWidth: 2,
-    borderColor: '#FF1818',
+    borderColor: 'white',
     alignSelf: 'stretch',
     margin: 15,
     marginHorizontal: 20,
   },
   ButtonText: {
-    color: '#FF1818',
+    color: 'white',
     fontWeight: 'bold',
     fontSize: 16,
     textAlign: 'center',

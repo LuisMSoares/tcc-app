@@ -19,7 +19,7 @@ class subjInfo extends Component {
     header: null,
   };
   
-  componentWillMount(){
+  componentDidMount(){
     const { navigation } = this.props;
     this.setState({ subjectId: navigation.getParam('subID') });
     this.setState({ subjectName: navigation.getParam('subName') });
