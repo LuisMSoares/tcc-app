@@ -29,7 +29,6 @@ class SideMenu extends Component {
         routeName: route
       });
       AsyncStorage.getAllKeys().then(keyArray => {
-        console.log('outros keys')
         AsyncStorage.multiRemove(keyArray);
       });
       this.props.navigation.dispatch(navigateAction);

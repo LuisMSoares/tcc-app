@@ -28,7 +28,6 @@ class vPresence extends Component {
     let CryptoJS = require("crypto-js");
     let bytes  = CryptoJS.AES.decrypt(data, '%8#7@e20&4');
     let originalText = bytes.toString(CryptoJS.enc.Utf8);
-    console.log(originalText);
     return originalText;
   }
 
@@ -125,7 +124,6 @@ class vPresence extends Component {
     //                                         GSM -3:00 Brasilia Brasil
     const timestamp = dateObj.getTime() - (dateObj.getTimezoneOffset() * 60000);
     const date = new Date( timestamp ).toISOString().slice(0,10);
-    console.log('Data de hoje: '+date);
     return date;
   }
 
@@ -147,7 +145,7 @@ class vPresence extends Component {
 
   render () {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.Container}>
         {customHeader(this.props.navigation.toggleDrawer,"Validar Presença")}
         <QRCodeScanner
           cameraStyle={styles.QrView}
@@ -159,8 +157,7 @@ class vPresence extends Component {
           showMarker={true}
           customMarker={
             <Image
-              style={{height: this._qrMarkerSize(),
-                      width: this._qrMarkerSize(),
+              style={{height: this._qrMarkerSize(), width: this._qrMarkerSize(),
                       marginBottom: Dimensions.get('window').height / 6,
                     }}
               source={require('../../../../images/qrMarker.png')}
@@ -168,7 +165,7 @@ class vPresence extends Component {
           }
         />
         <View style={styles.BottomContainer}>
-          <Text style={styles.notification}>{this.state.sincStatus}</Text>
+          <Text style={styles.Notification}>{this.state.sincStatus}</Text>
           {this.state.sincNow === true && 
             <TouchableOpacity
               style={styles.Button}
@@ -184,13 +181,16 @@ class vPresence extends Component {
 }
 
 const styles = StyleSheet.create({
+  Container: {
+    flex: 1,
+  },
   QrView: {
     height: Dimensions.get('window').height,
   },
   BottomContainer: {
     marginBottom: 20,
   },
-  notification: {
+  Notification: {
     flex: 0,
     paddingRight: 10,
     paddingLeft: 10,
