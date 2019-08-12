@@ -159,7 +159,7 @@ class lsSubject extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View  style={{flex: 1,backgroundColor: '#F5F5F5'}}>
         {customHeader(this.props.navigation.toggleDrawer,"Realizar Chamada")}
         <ScrollView
           refreshControl={

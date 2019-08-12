@@ -46,16 +46,7 @@ class SideMenu extends Component {
             <View style={styles.navSectionStyle}>
 
               <TouchableOpacity style={styles.navRowStyle}
-                onPress={()=>{
-                  /*const resetAction = StackActions.reset({
-                    index: 0,
-                    actions: [
-                      NavigationActions.navigate({ routeName: 'ToHome' }),
-                    ],
-                  });
-                  this.props.navigation.dispatch(resetAction);*/
-                  this.navigateToScreen('vPresence');
-                }}
+                onPress={this.navigateToScreen('vPresence')}
               >
                 <MCIcon style={styles.navIconStyle} name="qrcode-scan" size={30} color="white" />
                 <Text style={styles.navItemStyle}>

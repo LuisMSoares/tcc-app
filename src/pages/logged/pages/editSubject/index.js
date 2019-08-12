@@ -100,7 +100,7 @@ class editSubject extends Component {
 
   render () {
     return (
-      <View style={{flex: 1,}}>
+      <View  style={{flex: 1,backgroundColor: '#F5F5F5'}}>
         {customHeader(this.props.navigation.goBack,"Editar Disciplina", true)}
         <View style={{
           paddingTop: 20,

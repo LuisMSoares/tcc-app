@@ -118,7 +118,7 @@ class subjInfo extends Component {
     const widthArr = [state.width * .70, state.width * .12, state.width * .12];
 
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{flex: 1,backgroundColor: '#F5F5F5'}}>
         {customHeader(this.props.navigation.goBack,"Relatorio de Faltas", true)}
         <ScrollView horizontal={false} vertical={false} style={{ margin: state.width * .03, flex: 1 }}
           refreshControl={

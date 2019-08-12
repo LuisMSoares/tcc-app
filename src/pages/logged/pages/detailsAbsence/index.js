@@ -69,7 +69,7 @@ class detailsAbsence extends Component{
 
   render(){
     return(
-      <View style={{ flex: 0, }}>
+      <View style={{flex: 0,backgroundColor: '#F5F5F5'}}>
         {customHeader(this.props.navigation.goBack,"Calendario de Faltas", true)}
         { this.state.error === true && 
           <Text style={styles.errorMessage}>
