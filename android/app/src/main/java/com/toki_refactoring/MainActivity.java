@@ -1,4 +1,4 @@
-package com.toki_refactoring;
+package com.Toki;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
@@ -13,7 +13,7 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "Toki_Refactoring";
+        return "Toki";
     }
     
     @Override

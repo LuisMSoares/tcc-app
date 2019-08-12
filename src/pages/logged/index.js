@@ -28,6 +28,7 @@ const drawernav = createDrawerNavigator({
     myAbsencePage,
     createSubject,
   }, {
+    unmountInactiveRoutes: true,
     contentComponent: SideMenu,
     drawerWidth: 250
 });

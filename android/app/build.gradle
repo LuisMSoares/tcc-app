@@ -128,7 +128,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.toki_refactoring"
+        applicationId "com.Toki"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
