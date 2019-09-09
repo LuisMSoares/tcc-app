@@ -59,7 +59,7 @@ class myAbsence extends Component {
       this.setState({refreshing: true});
     }
     try {
-      const response = await api.get('/subject/enrolled/all');
+      const response = await api.get('/subject/associate');
       if (response.status === 200) {
         this.setState({presence: response.data.dates});
         const data = response.data.values;

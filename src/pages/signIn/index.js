@@ -30,8 +30,8 @@ export default class SignIn extends Component {
   };
 
   state = {
-    email: '',
-    password: '',
+    email: 'a',
+    password: 'a',
     error: '',
   };
 
@@ -52,7 +52,7 @@ export default class SignIn extends Component {
       this.setState({ error: 'Preencha usuário e senha para continuar!' }, () => false);
     } else {
       try {
-        const response = await api.post('/user/login', {
+        const response = await api.post('/login', {
           username: this.state.email,
           password: this.state.password,
         });

@@ -3,8 +3,8 @@ import axios from 'axios';
 import { AsyncStorage } from 'react-native';
 
 const api = axios.create({
-  //baseURL: 'http://192.168.0.100:5000',
-  baseURL: 'https://toki-api.herokuapp.com',
+  baseURL: 'http://192.168.0.100:5000/api',
+  //baseURL: 'https://toki-api.herokuapp.com',
   validateStatus: function (status) {
     return status < 1000;
   }

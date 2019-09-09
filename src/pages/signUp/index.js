@@ -66,7 +66,7 @@ export default class SignUp extends Component {
       this.setState({ error: 'Preencha todos os campos para continuar!' }, () => false);
     } else {
       try {
-        const response = await api.post('/user/register', {
+        const response = await api.post('/user', {
           uname: this.state.username,
           email: this.state.email,
           passw: this.state.password,
@@ -114,6 +114,7 @@ export default class SignUp extends Component {
           onChangeText={this.handleEnrollmentChange}
           autoCapitalize="none"
           autoCorrect={false}
+          keyboardType='numeric'
         />
         <Input
           placeholder="Endereço de e-mail"

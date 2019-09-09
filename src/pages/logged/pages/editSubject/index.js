@@ -55,7 +55,7 @@ class editSubject extends Component {
           sgroup: this.state.subjectGroup,
           upass: this.state.upassword
         };
-        const response = await api.post('/subject/edit', data);
+        const response = await api.put('/subject', data);
         if (response.status === 200) {
           this.setState({ error: '' });
           this.setState({ success: response.data.Success });
@@ -79,7 +79,7 @@ class editSubject extends Component {
       const data = {
         upass: this.state.upassword
       };
-      const response = await api.post('/subject/delete/'+this.state.subjectId, data);
+      const response = await api.put('/subject/'+this.state.subjectId, data);
       if (response.status === 200) {
         this.setState({ error: '' });
         this.setState({ success: response.data.Success });

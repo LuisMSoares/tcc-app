@@ -99,7 +99,7 @@ class lsSubject extends Component {
       this.setState({refreshing: true});
     }
     try {
-      const response = await api.get('/subject/createdby/all');
+      const response = await api.get('/subject');
       if (response.status === 200) {
         const data = response.data.values;
         this.setState({scrollData: data});

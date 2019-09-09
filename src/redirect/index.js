@@ -19,7 +19,7 @@ export default class ToHome extends Component {
   };
 
   _preLoadApp = async () => {
-    const response = await api.get('/subject/createdby/all');
+    const response = await api.get('/subject');
     if (response.status === 200) {
       const data = response.data.values;
       this.setState({scrollData: data});

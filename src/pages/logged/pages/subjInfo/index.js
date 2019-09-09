@@ -47,7 +47,7 @@ class subjInfo extends Component {
     const { navigation } = this.props;
     const subId = navigation.getParam('subID');
     try{
-      const response = await api.get('/absence/all/'+subId);
+      const response = await api.get(`/absence?all=1&subjid=${subId}`);
       if (response.status == 200) {
         this.setState({presence: response.data.dates});
         const data = response.data.values;

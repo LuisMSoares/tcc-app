@@ -33,9 +33,9 @@ class detailsAbsence extends Component{
     const userId = await this.props.navigation.getParam('userId', 0);
     let datesResult, datesAbsence;
     try {
-      datesResult = await api.get(`/absence/dates/${subjId}`);
+      datesResult = await api.get(`/absence?presence=1&subjid=${subjId}`);
       datesResult = datesResult.data
-      datesAbsence = await api.get(`/absence/one/subjectId=${subjId}&userid=${userId}`);
+      datesAbsence = await api.get(`/absence?one=1&subjid=${subjId}&userId=${userId}`);
       datesAbsence = datesAbsence.data
 
       AsyncStorage.setItem(`@MyApp:subPresence${subjId}`, JSON.stringify(datesResult));

@@ -35,7 +35,7 @@ class createSubject extends Component {
       this.setState({ error: 'Preencha todos os campos para continuar!' });
     } else {
       try {
-        const response = await api.post('/subject/register',{
+        const response = await api.post('/subject',{
           sname: this.state.subjectName,
           sgroup: this.state.subjectGroup,
         });
