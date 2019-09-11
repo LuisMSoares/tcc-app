@@ -39,7 +39,7 @@ const ErrorMessage = styled.Text`
   marginHorizontal: 20px;
 `;
 
-const Button = styled.TouchableHighlight`
+const Button = styled.TouchableOpacity`
   padding: 20px;
   borderRadius: 5px;
   backgroundColor: #fc6663;
@@ -55,7 +55,7 @@ const ButtonText = styled.Text`
   textAlign: center;
 `;
 
-const SignInLink = styled.TouchableHighlight`
+const SignInLink = styled.TouchableOpacity`
   padding: 10px;
   marginTop: 10px;
 `;

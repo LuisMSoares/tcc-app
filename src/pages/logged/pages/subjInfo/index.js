@@ -9,10 +9,11 @@ import {
   ScrollView, 
   TouchableOpacity,
   Text,
+  AsyncStorage,
 } from 'react-native';
 import { Table, Row } from 'react-native-table-component';
 
-import api from '../../../../services/api'
+import api, { baseURL } from '../../../../services/api';
  
 class subjInfo extends Component {
   static navigationOptions = {
@@ -111,6 +112,31 @@ class subjInfo extends Component {
     }
   }
 
+  reportDownload = async () => {
+    const downloadManager = require("react-native-simple-download-manager");
+    const token = await AsyncStorage.getItem('@MyAppJWT:token');
+    
+    api.get(`/absence/report/${this.state.subjectId}`).then((response) => {
+      console.log(response.data);
+    })
+    
+    const url = `${baseURL}/absence/report/${this.state.subjectId}`
+    const headers = { Authorization: `Bearer ${token}` };
+    const config = {
+      downloadTitle: "Relatorio de Faltas",
+      downloadDescription:
+        `Relatorio de faltas da disciplina ${this.state.subjectName} da turma ${this.state.subjectGroup}`,
+      saveAsName: `${this.state.subjectName}-${this.state.subjectGroup}.xls`,
+      allowedInRoaming: true,
+      allowedInMetered: true,
+      showInDownloads: true,
+      external: false, //when false basically means use the default Download path (version ^1.3)
+      path: "Download/" //if "external" is true then use this path (version ^1.3)
+    };
+    
+    downloadManager.download(url, headers, config);
+  }
+
   render() {
     const state = this.state;
  
@@ -132,6 +158,14 @@ class subjInfo extends Component {
         </ScrollView>
         
 
+        { this.state.tableData.length !== 0 &&
+          <TouchableOpacity
+            onPress={() => this.reportDownload() }
+            style={styles.Button2}
+          >
+            <Text style={styles.ButtonText2}>Baixar Planilha de Faltas</Text>
+          </TouchableOpacity>
+        }
 
         <TouchableOpacity
           onPress={() => {this.props.navigation.navigate('editSubject',{
@@ -183,11 +217,27 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#FF1818',
     alignSelf: 'stretch',
-    margin: 15,
-    marginHorizontal: 20,
+    marginHorizontal: 10,
+    marginTop: 5,
+    marginBottom: 10,
+  },
+  Button2: {
+    padding: 10,
+    borderRadius: 5,
+    borderWidth: 2,
+    borderColor: '#FF9218',
+    alignSelf: 'stretch',
+    marginHorizontal: 10,
+    marginTop: 10,
   },
   ButtonText: {
     color: '#FF1818',
+    fontWeight: 'bold',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  ButtonText2: {
+    color: '#FF9218',
     fontWeight: 'bold',
     fontSize: 16,
     textAlign: 'center',
